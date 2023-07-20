@@ -100,6 +100,20 @@ let openSideNav = ref(true);
             </ul>
         </div>
         <div id="SideNavOverlay"></div>
-        <slot />
+        <div
+            class="w-[100%] h-[calc(100vh-60px)] absolute right-0 top-[60px]"
+            :class="{
+                'w-[calc(100%-70px)]': !openSideNav,
+                'w-[calc(100%-240px)]': openSideNav,
+            }"
+        >
+            <slot />
+        </div>
     </div>
 </template>
+
+<style>
+body {
+    background: black;
+}
+</style>
