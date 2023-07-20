@@ -32,14 +32,16 @@ const props = defineProps({
 
 const { openSideNav, iconString } = toRefs(props);
 
-let icon = null;
+const iconMap = {
+    Home: Home,
+    Subscriptions: FolderPlayOutline,
+    Library: ImageMultiple,
+    Liked: ThumbUpOutline,
+    History: History,
+    "Watch Later": ClockOutline,
+    "Add Video": VideoPlusOutline,
+    "Delete Video": DeleteIcon,
+};
 
-if (iconString.value === "Home") icon = Home;
-if (iconString.value === "Subscriptions") icon = FolderPlayOutline;
-if (iconString.value === "Library") icon = ImageMultiple;
-if (iconString.value === "Liked") icon = ThumbUpOutline;
-if (iconString.value === "History") icon = History;
-if (iconString.value === "Watch Later") icon = ClockOutline;
-if (iconString.value === "Add Video") icon = VideoPlusOutline;
-if (iconString.value === "Delete Video") icon = DeleteIcon;
+let icon = iconMap[iconString.value] || null;
 </script>
