@@ -1,15 +1,10 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 import NavLayout from "@/Layouts/NavLayout.vue";
+import RecommmendedVideos from "@/Components/RecommmendedVideos.vue";
 import CheckCircle from "vue-material-design-icons/CheckCircle.vue";
 import ThumbUpOutline from "vue-material-design-icons/ThumbUpOutline.vue";
 import ThumbDownOutline from "vue-material-design-icons/ThumbDownOutline.vue";
-
-// defineProps({
-//     canLogin: {
-//         type: Boolean,
-//     },
-// });
 </script>
 <template>
     <Head title="youtube-clone" />
@@ -113,6 +108,19 @@ import ThumbDownOutline from "vue-material-design-icons/ThumbDownOutline.vue";
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="w-[500px] p-3 sm:block hidden">
+                <div class="flex mb-3">
+                    <RecommmendedVideos
+                        :vid="{
+                            title: 'title example',
+                            video: '/videos/sample-video.mp4',
+                            thumbnail: '/videos/Thumbnails/sample-video.PNG',
+                            user: 'example user',
+                            views: '2332',
+                        }"
+                    />
                 </div>
             </div>
         </div>

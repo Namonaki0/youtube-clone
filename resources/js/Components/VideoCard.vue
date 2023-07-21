@@ -1,3 +1,44 @@
+<script setup>
+import { toRefs, ref, watch, onMounted } from "vue";
+import CheckCircle from "vue-material-design-icons/CheckCircle.vue";
+
+const props = defineProps({
+    title: String,
+    user: String,
+    views: String,
+    image: String,
+    videoUrl: String,
+    thumbnail: String,
+});
+
+const { title, user, views, image, videoUrl, thumbnail } = toRefs(props);
+
+let show = ref(false);
+let showVideo = ref(false);
+let video = ref(null);
+let width = ref(document.documentElement.clientWidth);
+
+onMounted(() => {
+    window.addEventListener("resize", () => {
+        width.value = document.documentElement.clientWidth;
+    });
+});
+
+watch(
+    () => show.value,
+    (show) => {
+        if (show) {
+            showVideo.value = true;
+            video.value.play();
+            return "";
+        }
+        showVideo.value = false;
+        video.value.pause();
+        video.value.currentTime = 0;
+    }
+);
+</script>
+
 <template>
     <div class="relative">
         <div
@@ -51,7 +92,7 @@
                         <div
                             class="text-[14px] text-gray-300 font-extrabold flex gap-1 items-center cursor-pointer"
                         >
-                            {{ title.substring(0, 30) }}
+                            {{ user.substring(0, 30) }}
                             <CheckCircle fillColor="#888888" :size="17" />
                         </div>
                         <div class="text-sm mb-1 text-gray-300 cursor-pointer">
@@ -63,46 +104,3 @@
         </div>
     </div>
 </template>
-
-<script setup>
-import { toRefs, ref, watch, onMounted } from "vue";
-import CheckCircle from "vue-material-design-icons/CheckCircle.vue";
-
-const props = defineProps({
-    title: String,
-    user: String,
-    views: String,
-    image: String,
-    videoUrl: String,
-    thumbnail: String,
-});
-
-const { title, user, views, image, videoUrl, thumbnail } = toRefs(props);
-
-let show = ref(false);
-let showVideo = ref(false);
-let video = ref(null);
-let width = ref(document.documentElement.clientWidth);
-
-onMounted(() => {
-    window.addEventListener("resize", () => {
-        width.value = document.documentElement.clientWidth;
-    });
-});
-
-watch(
-    () => show.value,
-    (show) => {
-        if (show) {
-            showVideo.value = true;
-            video.value.play();
-            return "";
-        }
-        showVideo.value = false;
-        video.value.pause();
-        video.value.currentTime = 0;
-    }
-);
-</script>
-
-<style lang="scss" scoped></style>
