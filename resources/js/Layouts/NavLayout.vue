@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { Link } from "@inertiajs/vue3";
-import SideNavItem from "@/components/SideNavItem.vue";
+import SideNavItem from "@/Components/SideNavItem.vue";
 import MenuIcon from "vue-material-design-icons/Menu.vue";
 import MagnifyIcon from "vue-material-design-icons/Magnify.vue";
 
