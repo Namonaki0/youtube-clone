@@ -40,7 +40,7 @@ const isNavOverlay = () => {
         openSideNavOverlay.value = !openSideNavOverlay.value;
     if (usePage().props.video)
         openSideNavOverlay.value = !openSideNavOverlay.value;
-    if (usePage().url === "/videos/1")
+    if (usePage().url.includes("/videos"))
         openSideNavOverlay.value = !openSideNavOverlay.value;
 };
 </script>

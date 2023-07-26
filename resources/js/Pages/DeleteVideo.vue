@@ -33,7 +33,7 @@ import NavLayout from "@/Layouts/NavLayout.vue";
                             <video
                                 width="320"
                                 class="min-w-[200px]"
-                                src="/videos/sample-video.mp4"
+                                src="/videos/Auto.mp4"
                                 type="video/mp4"
                                 controls
                             ></video>
