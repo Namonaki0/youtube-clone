@@ -25,7 +25,7 @@ defineProps({
                     <div class="flex mt-1.5">
                         <img
                             :src="
-                                `https://picsum.photos/id/${(
+                                `https://picsum.photos/${(
                                     Math.random() * 100
                                 ).toFixed(0)}/100` || ''
                             "
@@ -82,9 +82,9 @@ defineProps({
                         <div class="flex items-flex mb-4 mt-2">
                             <img
                                 :src="
-                                    `https://picsum.photos/id/${(
+                                    `https://picsum.photos/${(
                                         Math.random() * 100
-                                    ).toFixed(0)}/100` || ''
+                                    ).toFixed(0)}` || ''
                                 "
                                 alt="video thumbnail"
                                 class="rounded-full w-12 h-12 mt-2"

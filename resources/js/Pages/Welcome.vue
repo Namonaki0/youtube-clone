@@ -21,7 +21,7 @@ defineProps({
                         :views="video.views"
                         :videoUrl="video.video"
                         :thumbnail="video.thumbnail"
-                        :image="`https://picsum.photos/id/${i}/100`"
+                        :image="`https://picsum.photos/${i}`"
                     />
                 </Link>
             </div>
