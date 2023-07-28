@@ -104,17 +104,20 @@ const isNavOverlay = () => {
                     :class="[!openSideNav ? 'p-2' : 'px-5 pb-2 pt-[7px]']"
                 >
                     <Link :href="route('home')">
-                        <SideNavItem :openSideNav="true" iconString="Home" />
+                        <SideNavItem
+                            :openSideNav="openSideNav"
+                            iconString="Home"
+                        />
                     </Link>
                     <Link :href="route('addVideo')">
                         <SideNavItem
-                            :openSideNav="true"
+                            :openSideNav="openSideNav"
                             iconString="Add Video"
                         />
                     </Link>
                     <Link :href="route('deleteVideo')">
                         <SideNavItem
-                            :openSideNav="true"
+                            :openSideNav="openSideNav"
                             iconString="Delete Video"
                         />
                     </Link>

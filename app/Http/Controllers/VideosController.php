@@ -33,9 +33,23 @@ class VideosController extends Controller
     }
     /**
      * Remove the specified resource from storage.
+     * @param int $id
+     * @return \illuminate\Http\Response
      */
-    public function destroy(Videos $videos)
+    public function destroy($id)
     {
-        //
+        $video = Videos::find($id);
+
+        if (file_exists(public_path() . $video->video)) {
+            unlink(public_path() . $video->video);
+        }
+
+        if (file_exists(public_path() . $video->thumbnail)) {
+            unlink(public_path() . $video->thumbnail);
+        }
+
+
+        $video->delete();
+        return redirect()->route('deleteVideo');
     }
 }
