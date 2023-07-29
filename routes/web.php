@@ -32,6 +32,7 @@ Route::get("/add-video", function () {
 })->name("addVideo");
 
 Route::get('/videos/{id}', [\App\Http\Controllers\VideosController::class, 'show'])->name('videos.show');
+Route::post('/videos/', [\App\Http\Controllers\VideosController::class, 'store'])->name('videos.store');
 Route::delete('/videos/{id}', [\App\Http\Controllers\VideosController::class, 'destroy'])->name('videos.destroy');
 
 require __DIR__ . '/auth.php';

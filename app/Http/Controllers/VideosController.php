@@ -15,7 +15,40 @@ class VideosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $image_file = null;
+        $video_file = null;
+
+        $video = new Videos;
+
+        $image_file = $request->file('image');
+        $request->validate(['image' => 'required|mimes:jpg,jpeg|max:2048']);
+
+        $video_file = $request->file('video');
+        $request->validate(['video' => 'required|mimes:mp4']);
+
+        $thumbnailPath = '/videos/Thumbnails/';
+        $videosPath = '/videos/';
+
+        $time = time();
+
+        $extension = $image_file->getClientOriginalExtension();
+        $imageName = $time . '.' . $extension;
+
+        $extension = $video_file->getClientOriginalExtension();
+        $videoName = $time . '.' . $extension;
+
+        $video->title = $request->input('title');
+        $video->video = $videosPath . $videoName;
+        $video->thumbnail = $thumbnailPath . $imageName;
+        $video->user = 'John Doe';
+        $video->views = rand(10, 1000) . 'k views - ' . rand(1, 7) . 'days ago';
+
+        $image_file->move(public_path() . $thumbnailPath, $imageName);
+        $video_file->move(public_path() . $videosPath, $videoName);
+
+        if ($video->save()) {
+            return redirect()->route('videos.show', $video['id']);
+        }
     }
 
     /**
