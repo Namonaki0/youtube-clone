@@ -1,11 +1,8 @@
 <script setup>
-import { defineProps } from "vue";
 import { Head, Link } from "@inertiajs/vue3";
 import NavLayout from "@/Layouts/NavLayout.vue";
 
 defineProps({ videos: Array });
-
-console.log(videos);
 </script>
 
 <template>
