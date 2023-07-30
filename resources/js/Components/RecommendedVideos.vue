@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, toRefs, ref, watch } from "vue";
+import { toRefs, ref, watch } from "vue";
 import CheckCircle from "vue-material-design-icons/CheckCircle.vue";
 
 const props = defineProps({

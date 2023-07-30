@@ -36,7 +36,7 @@ defineProps({ videos: Array });
                                 <video
                                     width="320"
                                     class="min-w-[200px]"
-                                    :src="video"
+                                    :src="video.video"
                                     type="video/mp4"
                                     controls
                                 ></video>

@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { defineProps, toRefs } from "vue";
+import { toRefs } from "vue";
 
 import Home from "vue-material-design-icons/Home.vue";
 import FolderPlayOutline from "vue-material-design-icons/FolderPlayOutline.vue";

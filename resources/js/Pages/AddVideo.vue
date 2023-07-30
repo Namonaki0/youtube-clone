@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { Head, router } from "@inertiajs/vue3";
 import NavLayout from "@/Layouts/NavLayout.vue";
+// console.log(router);
 
 defineProps({
     errors: Object,
@@ -13,26 +14,32 @@ let video = ref("");
 let error = ref({
     title: null,
     image: null,
-    videos: null,
+    video: null,
 });
 
 const addVideo = () => {
     let err = false;
+
+    error.value.title = null;
+    error.value.image = null;
+    error.value.video = null;
 
     if (!title.value) {
         error.value.title = "Please enter a title";
         err = true;
     }
     if (!image.value) {
-        error.value.title = "Please select a thumbnail";
+        error.value.image = "Please select a thumbnail";
         err = true;
     }
     if (!video.value) {
-        error.value.title = "Please select a video";
+        error.value.video = "Please select a video";
         err = true;
     }
 
-    if (err) return;
+    if (err) {
+        return;
+    }
 
     let data = new FormData();
 
@@ -66,20 +73,21 @@ const getImage = (e) => (image.value = e.target.files[0]);
                     <span v-if="error.title" class="text-red-500">{{
                         error.title
                     }}</span>
-                    <span v-if="errors && errors.image" class="text-red-500">{{
-                        errors.image
-                    }}</span>
                 </div>
                 <div class="my-5" />
                 <div>
                     <div class="text-gray-200">Thumbnail</div>
                     <input
                         @change="getImage"
-                        type="file"
                         class="form-control block w-full px-3 py-1.5 border text-white border-solid border-gray-600 rounded transition ease-in-out m-0 hover:cursor-pointer focus:text-gray-700 focus:border-blue-600 focus:outline-none"
+                        type="file"
+                        id="formFile"
                     />
                     <span v-if="error.image" class="text-red-500">{{
                         error.image
+                    }}</span>
+                    <span v-if="errors && errors.image" class="text-red-500">{{
+                        errors.image
                     }}</span>
                 </div>
                 <div class="my-5" />
@@ -87,11 +95,12 @@ const getImage = (e) => (image.value = e.target.files[0]);
                     <div class="text-gray-200">Video/MP4</div>
                     <input
                         @change="getVideo"
-                        type="file"
                         class="form-control block w-full px-3 py-1.5 border text-white border-solid border-gray-600 rounded transition ease-in-out m-0 hover:cursor-pointer focus:text-gray-700 focus:border-blue-600 focus:outline-none"
+                        type="file"
+                        id="formFile"
                     />
-                    <span v-if="error.videos" class="text-red-500">{{
-                        error.videos
+                    <span v-if="error.video" class="text-red-500">{{
+                        error.video
                     }}</span>
                     <span v-if="errors && errors.video" class="text-red-500">{{
                         errors.video

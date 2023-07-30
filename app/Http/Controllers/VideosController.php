@@ -11,7 +11,8 @@ class VideosController extends Controller
 {
 
     /**
-     * Store a newly created resource in storage.
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -21,13 +22,16 @@ class VideosController extends Controller
         $video = new Videos;
 
         $image_file = $request->file('image');
-        $request->validate(['image' => 'required|mimes:jpg,jpeg|max:2048']);
+        $request->validate([
+            'image' => 'required|mimes:jpg,jpeg,png|max:2048',
+            'video' => 'required|mimes:mp4'
+        ]);
 
         $video_file = $request->file('video');
         $request->validate(['video' => 'required|mimes:mp4']);
 
         $thumbnailPath = '/videos/Thumbnails/';
-        $videosPath = '/videos/';
+        $videoPath = '/videos/';
 
         $time = time();
 
@@ -38,13 +42,13 @@ class VideosController extends Controller
         $videoName = $time . '.' . $extension;
 
         $video->title = $request->input('title');
-        $video->video = $videosPath . $videoName;
+        $video->video = $videoPath . $videoName;
         $video->thumbnail = $thumbnailPath . $imageName;
         $video->user = 'John Doe';
-        $video->views = rand(10, 1000) . 'k views - ' . rand(1, 7) . 'days ago';
+        $video->views = rand(10, 1000) . 'k views - ' . rand(1, 7) . ' days ago';
 
         $image_file->move(public_path() . $thumbnailPath, $imageName);
-        $video_file->move(public_path() . $videosPath, $videoName);
+        $video_file->move(public_path() . $videoPath, $videoName);
 
         if ($video->save()) {
             return redirect()->route('videos.show', $video['id']);
@@ -61,7 +65,7 @@ class VideosController extends Controller
         return Inertia::render('Video', [
             'video' => Videos::find($id),
             'comments' => Comments::all(),
-            'recommendedVideos' => Videos::inRandomOrder()->get()
+            'recommendedVideos' => Videos::inRandomOrder()->limit(25)->get()
         ]);
     }
     /**
